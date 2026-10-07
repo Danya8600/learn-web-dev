@@ -1,26 +1,240 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!--
-      ЗАДАНИЕ
-      ========
-      Сверстать страницу выбора даты и времени по своему макету.
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ф.О.Р.М.А - выбор даты и времени</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-      Пока это только вёрстка. Никакого JavaScript — ни кликов,
-      ни переходов, ни выбора дня. Всё статично.
+<body>
+  <div class="page">
 
-      Стили пишите в styles.css. Разметку — здесь.
-    -->
+    <header class="header">
+      <a class="brand" href="#">
+        <span class="brand-icon">F</span>
 
-    <div class="page">
-      <!-- Начните отсюда. Разметьте шапку, основную область
-           с календарём и слотами, подвал. -->
-    </div>
-  </body>
+        <span class="brand-text">
+          <span class="brand-name">Ф.О.Р.М.А</span>
+          <span class="brand-subtitle">БАРБЕРШОП</span>
+        </span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#">Услуги</a>
+        <a href="#">Мастера</a>
+        <a href="#">Отзывы</a>
+        <a href="#">Контакты</a>
+      </nav>
+
+      <a class="header-button" href="#">
+        Запись
+      </a>
+    </header>
+
+
+    <section class="booking-progress">
+      <div class="progress-title">
+        <span>ЗАПИСЬ ОНЛАЙН</span>
+        <strong>Шаг 3 из 5</strong>
+      </div>
+
+      <ol class="steps">
+        <li class="step completed">
+          <span class="step-number">✓</span>
+          <span>Мастер</span>
+        </li>
+
+        <li class="step completed">
+          <span class="step-number">✓</span>
+          <span>Услуга</span>
+        </li>
+
+        <li class="step current">
+          <span class="step-number">✓</span>
+          <span>Дата и время</span>
+        </li>
+
+        <li class="step">
+          <span class="step-number">4</span>
+          <span>Контакты</span>
+        </li>
+
+        <li class="step">
+          <span class="step-number">5</span>
+          <span>Подтверждение</span>
+        </li>
+      </ol>
+    </section>
+
+
+    <main class="main">
+      <section class="date-section">
+
+        <p class="section-label">ШАГ 3 · ДАТА И ВРЕМЯ</p>
+
+        <h1>Найдём удобное время</h1>
+
+        <p class="section-description">
+          Расписание Дмитрия · комплекс «Стрижка + борода» · 60 минут.
+        </p>
+
+
+        <div class="schedule">
+
+          <section class="calendar-card">
+            <div class="calendar-header">
+              <h2>ОКТЯБРЬ 2026</h2>
+
+              <div class="calendar-controls">
+                <button type="button" aria-label="Предыдущий месяц">‹</button>
+                <button type="button" aria-label="Следующий месяц">›</button>
+              </div>
+            </div>
+
+
+            <div class="weekdays">
+              <span>Пн</span>
+              <span>Вт</span>
+              <span>Ср</span>
+              <span>Чт</span>
+              <span>Пт</span>
+              <span>Сб</span>
+              <span>Вс</span>
+            </div>
+
+
+            <div class="calendar-days">
+
+              <span class="empty-day"></span>
+              <span class="empty-day"></span>
+              <span class="empty-day"></span>
+
+              <button type="button" class="day">1</button>
+              <button type="button" class="day">2</button>
+              <button type="button" class="day">3</button>
+              <button type="button" class="day">4</button>
+
+              <button type="button" class="day">5</button>
+              <button type="button" class="day">6</button>
+              <button type="button" class="day">7</button>
+              <button type="button" class="day selected">8</button>
+              <button type="button" class="day">9</button>
+              <button type="button" class="day">10</button>
+              <button type="button" class="day">11</button>
+
+              <button type="button" class="day">12</button>
+              <button type="button" class="day">13</button>
+              <button type="button" class="day">14</button>
+              <button type="button" class="day">15</button>
+              <button type="button" class="day">16</button>
+              <button type="button" class="day">17</button>
+              <button type="button" class="day">18</button>
+
+              <button type="button" class="day">19</button>
+              <button type="button" class="day">20</button>
+              <button type="button" class="day">21</button>
+              <button type="button" class="day">22</button>
+              <button type="button" class="day">23</button>
+              <button type="button" class="day">24</button>
+              <button type="button" class="day">25</button>
+
+              <button type="button" class="day">26</button>
+              <button type="button" class="day">27</button>
+              <button type="button" class="day">28</button>
+              <button type="button" class="day">29</button>
+              <button type="button" class="day">30</button>
+              <button type="button" class="day">31</button>
+
+              <span class="empty-day"></span>
+            </div>
+          </section>
+
+
+          <section class="time-card">
+            <h2>Четверг, 8 октября</h2>
+            <p>Свободные слоты</p>
+
+            <div class="time-grid">
+
+              <button type="button" class="time-slot">
+                10:00
+              </button>
+
+              <button type="button" class="time-slot occupied" disabled>
+                <span>11:00</span>
+                <small>Занято</small>
+              </button>
+
+              <button type="button" class="time-slot">
+                12:00
+              </button>
+
+              <button type="button" class="time-slot occupied" disabled>
+                <span>13:00</span>
+                <small>Занято</small>
+              </button>
+
+              <button type="button" class="time-slot selected">
+                14:00
+              </button>
+
+              <button type="button" class="time-slot">
+                15:00
+              </button>
+
+              <button type="button" class="time-slot">
+                16:00
+              </button>
+
+              <button type="button" class="time-slot">
+                17:00
+              </button>
+
+            </div>
+          </section>
+
+        </div>
+
+
+        <p class="selected-info">
+          Вы выбрали: 8 октября, 14:00 · Дмитрий · 60 минут
+        </p>
+
+
+        <div class="actions">
+          <button type="button" class="button button-secondary">
+            ← Назад
+          </button>
+
+          <button type="button" class="button button-primary">
+            Выбрать время →
+          </button>
+        </div>
+
+      </section>
+    </main>
+
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo">Ф.О.Р.М.А</div>
+        <p>Твой стиль. Твоя форма.</p>
+        <small>© Форма, 2026</small>
+      </div>
+
+      <div class="footer-column">
+        <h3>АДРЕС</h3>
+        <p>Москва, ул. Садовая, 15</p>
+        <span>Ежедневно · 10:00–21:00</span>
+      </div>
+
+      <div class="footer-column">
+        <h3>КОНТАКТЫ</h3>
+        <p>+7 (495) 123-45-67</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
 </html>
