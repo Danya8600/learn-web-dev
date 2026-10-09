@@ -1,14 +1,156 @@
+
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="page">
-      <!-- Перенесите вашу верстку. Удалите статичные данные. Подключите скрипт -->
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ф.О.Р.М.А - выбор даты и времени</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="header">
+      <a class="brand" href="#">
+        <span class="brand-icon">F</span>
+
+        <span class="brand-text">
+          <span class="brand-name">Ф.О.Р.М.А</span>
+          <span class="brand-subtitle">БАРБЕРШОП</span>
+        </span>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#">Услуги</a>
+        <a href="#">Мастера</a>
+        <a href="#">Отзывы</a>
+        <a href="#">Контакты</a>
+      </nav>
+
+      <a class="header-button" href="#">
+        Запись
+      </a>
+    </header>
+
+    <section class="booking-progress">
+      <div class="progress-title">
+        <span>ЗАПИСЬ ОНЛАЙН</span>
+        <strong>Шаг 3 из 5</strong>
+      </div>
+
+      <ol class="steps">
+        <li class="step completed">
+          <span class="step-number">✓</span>
+          <span>Мастер</span>
+        </li>
+
+        <li class="step completed">
+          <span class="step-number">✓</span>
+          <span>Услуга</span>
+        </li>
+
+        <li class="step current">
+          <span class="step-number">✓</span>
+          <span>Дата и время</span>
+        </li>
+
+        <li class="step">
+          <span class="step-number">4</span>
+          <span>Контакты</span>
+        </li>
+
+        <li class="step">
+          <span class="step-number">5</span>
+          <span>Подтверждение</span>
+        </li>
+      </ol>
+    </section>
+
+    <main class="main">
+      <section class="date-section">
+
+        <p class="section-label">ШАГ 3 · ДАТА И ВРЕМЯ</p>
+
+        <h1>Найдём удобное время</h1>
+
+        <p class="section-description">
+          Расписание Дмитрия · комплекс «Стрижка + борода» · 60 минут.
+        </p>
+
+        <div class="schedule">
+
+          <section class="calendar-card">
+            <div class="calendar-header">
+              <h2></h2>
+
+              <div class="calendar-controls">
+                <button type="button" aria-label="Предыдущий месяц">‹</button>
+                <button type="button" aria-label="Следующий месяц">›</button>
+              </div>
+            </div>
+
+            <div class="weekdays">
+              <span>Пн</span>
+              <span>Вт</span>
+              <span>Ср</span>
+              <span>Чт</span>
+              <span>Пт</span>
+              <span>Сб</span>
+              <span>Вс</span>
+            </div>
+
+            <!-- Дни календаря создаются через JavaScript -->
+            <div class="calendar-days"></div>
+          </section>
+
+          <section class="time-card">
+            <h2></h2>
+            <p>Свободные слоты</p>
+
+            <!-- Слоты времени создаются через JavaScript -->
+            <div class="time-grid"></div>
+          </section>
+
+        </div>
+
+        <!-- Выбранная дата и время -->
+        <p class="selected-info" aria-live="polite"></p>
+
+        <div class="actions">
+          <button type="button" class="button button-secondary">
+            ← Назад
+          </button>
+
+          <button type="button" class="button button-primary">
+            Выбрать время →
+          </button>
+        </div>
+
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo">Ф.О.Р.М.А</div>
+        <p>Твой стиль. Твоя форма.</p>
+        <small>© Форма, 2026</small>
+      </div>
+
+      <div class="footer-column">
+        <h3>АДРЕС</h3>
+        <p>Москва, ул. Садовая, 15</p>
+        <span>Ежедневно · 10:00–21:00</span>
+      </div>
+
+      <div class="footer-column">
+        <h3>КОНТАКТЫ</h3>
+        <p>+7 (495) 123-45-67</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
