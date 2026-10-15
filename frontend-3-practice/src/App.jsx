@@ -1,59 +1,117 @@
-// App — корневой компонент приложения.
-//
-// ЗАДАНИЕ
-// --------
-// Перенесите свою страницу выбора даты и времени из нативного JS
-// на React. У вас уже есть:
-//   - готовая вёрстка (HTML);
-//   - готовые стили (CSS);
-//   - рабочий код на нативном JS (валидация дат, рендер календаря,
-//     обработчики кликов, выбор слота).
-//
-// Теперь нужно то же самое сделать в React.
-//
-// ЧТО НУЖНО СДЕЛАТЬ
-// ------------------
-// 1. Разбить страницу на компоненты. Как именно — решайте сами.
-//    Обычно выделяют: шапку, подвал, календарь, сетку слотов,
-//    нижнюю панель.
-//
-// 2. Перенести вёрстку из HTML в JSX. Стили оставить как есть,
-//    просто положить их в тот же проект (например, в src/styles/
-//    или рядом с компонентами).
-//
-// 3. Заменить нативное состояние (переменные + прямые манипуляции
-//    с DOM) на useState. Какие именно данные должны жить в состоянии —
-//    подумайте сами. Скорее всего: текущий месяц, выбранный день,
-//    выбранное время, массив слотов.
-//
-// 4. Рендер календаря и слотов делать через JSX и .map(),
-//    без innerHTML и querySelector.
-//
-// 5. Обработчики кликов — через onClick прямо в JSX,
-//    без addEventListener.
-//
-// 6. Функции для работы с датами, которые вы уже написали
-//    на нативном JS (построение сетки календаря, сравнение дат,
-//    проверка «не раньше сегодня»), можно переиспользовать.
-//    Они чистые — не зависят от React. Создайте файл
-//    src/utils/date.js и перенесите их туда.
-//
-//
-// ПОДСКАЗКА
-// ---------
-// Если что-то не работает или непонятно, как перевести нативный
-// код на React — вернитесь к лекции. Там разбирались все
-// основные приёмы: состояние, пропсы, рендер списков, колбэки.
-//
-// Ниже — пустой каркас. Здесь можно начать писать.
 
-function App() {
+import { useState } from "react";
+
+import Header from "./components/Header";
+import BookingSteps from "./components/BookingSteps";
+import Calendar from "./components/Calendar";
+import TimeSlots from "./components/TimeSlots";
+import BookingBottomBar from "./components/BookingBottomBar";
+import Footer from "./components/Footer";
+
+import { getSlots } from "./data/date";
+
+export default function App() {
+  const [today] = useState(() => {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    return date;
+  });
+
+  // Просматриваемый месяц хранится отдельно от выбранной даты.
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+
+  // Выбранная дата и время записи.
+  const [selectedDate, setSelectedDate] = useState(today);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [slots, setSlots] = useState(() => getSlots(today));
+
+  // При выборе другого дня обновляем дату и расписание.
+  function handleDaySelect(day) {
+    const date = new Date(currentYear, currentMonth, day);
+
+    if (date < today) return;
+    if (date.getTime() === selectedDate.getTime()) return;
+
+    setSelectedDate(date);
+    setSelectedTime(null);
+    setSlots(getSlots(date));
+  }
+
+  // Разрешаем выбирать только свободные слоты.
+  function handleTimeSelect(time) {
+    const available = slots.some(slot =>
+      slot.time === time && !slot.occupied
+    );
+
+    if (available) {
+      setSelectedTime(time);
+    }
+  }
+
+  // Переключаем отображаемый месяц без сброса выбранной записи.
+  function handleMonthChange(direction) {
+    const target = new Date(
+      currentYear,
+      currentMonth + direction,
+      1
+    );
+
+    const currentMonthStart = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      1
+    );
+
+    if (target < currentMonthStart) return;
+
+    setCurrentMonth(target.getMonth());
+    setCurrentYear(target.getFullYear());
+  }
+
   return (
-    <div>
-      {/* Начните отсюда. Например, разметьте .page, добавьте шапку,
-            основную область, подвал. */}
+    <div className="page">
+      <Header />
+      <BookingSteps />
+
+      <main className="main">
+        <section className="date-section">
+          <p className="section-label">
+            ШАГ 3 · ДАТА И ВРЕМЯ
+          </p>
+
+          <h1>Найдём удобное время</h1>
+
+          <p className="section-description">
+            Расписание Дмитрия · комплекс «Стрижка + борода» · 60 минут.
+          </p>
+
+          <div className="schedule">
+            <Calendar
+              year={currentYear}
+              month={currentMonth}
+              selectedDate={selectedDate}
+              today={today}
+              onDaySelect={handleDaySelect}
+              onMonthChange={handleMonthChange}
+            />
+
+            <TimeSlots
+              date={selectedDate}
+              slots={slots}
+              selectedTime={selectedTime}
+              onTimeSelect={handleTimeSelect}
+            />
+          </div>
+
+          <BookingBottomBar
+            date={selectedDate}
+            selectedTime={selectedTime}
+          />
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 }
-
-export default App;
